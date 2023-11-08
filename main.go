@@ -10,7 +10,7 @@ import (
 func main() {
 	r := gin.Default()
 
-	r.GET("/favicon.ico", func(c *gin.Context) {
+	r.GET("favicon.ico", func(c *gin.Context) {
 		data, err := os.ReadFile("web/favicon.ico")
 
 		if err != nil {
