@@ -30,5 +30,5 @@ func main() {
 		c.Data(http.StatusOK, "text/plain", d)
 	})
 
-	r.Run(":8080")
+	r.Run(":80")
 }
