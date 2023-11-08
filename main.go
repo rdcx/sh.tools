@@ -10,11 +10,19 @@ import (
 func main() {
 	r := gin.Default()
 
+	r.GET("/favicon.ico", func(c *gin.Context) {
+		data, err := os.ReadFile("web/favicon.ico")
+
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+		c.Data(http.StatusOK, "image/x-icon", data)
+	})
+
 	r.GET("/", func(c *gin.Context) {
 		file := "web/index.html"
-
 		d, err := os.ReadFile(file)
-
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
@@ -34,23 +42,19 @@ func main() {
 
 	r.GET("/speedtest", func(c *gin.Context) {
 		d, err := os.ReadFile("tools/linux/speedtest/speedtest.sh")
-
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
-
 		c.Data(http.StatusOK, "text/plain", d)
 	})
 
 	r.GET("/weather", func(c *gin.Context) {
 		d, err := os.ReadFile("tools/linux/weather/weather.sh")
-
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
-
 		c.Data(http.StatusOK, "text/plain", d)
 	})
 
