@@ -11,7 +11,16 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "web/index.html", gin.H{})
+		file := "web/index.html"
+
+		d, err := os.ReadFile(file)
+
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		c.Data(http.StatusOK, "text/html", d)
 	})
 
 	r.GET("/linux/speedtest", func(c *gin.Context) {
