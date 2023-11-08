@@ -10,6 +10,10 @@ import (
 func main() {
 	r := gin.Default()
 
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "web/index.html", gin.H{})
+	})
+
 	r.GET("/linux/speedtest", func(c *gin.Context) {
 		d, err := os.ReadFile("tools/linux/speedtest/speedtest-go")
 		if err != nil {
