@@ -43,5 +43,16 @@ func main() {
 		c.Data(http.StatusOK, "text/plain", d)
 	})
 
+	r.GET("/weather", func(c *gin.Context) {
+		d, err := os.ReadFile("tools/linux/weather/weather.sh")
+
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		c.Data(http.StatusOK, "text/plain", d)
+	})
+
 	r.Run(":80")
 }
