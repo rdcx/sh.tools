@@ -32,7 +32,7 @@ func main() {
 		c.Data(http.StatusOK, "application/octet-stream", d)
 	})
 
-	r.GET("/linux/speedtest.sh", func(c *gin.Context) {
+	r.GET("/speedtest", func(c *gin.Context) {
 		d, err := os.ReadFile("tools/linux/speedtest/speedtest.sh")
 
 		if err != nil {
