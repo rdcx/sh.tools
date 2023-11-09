@@ -1,6 +1,12 @@
 <html>
 
 <head>
+    <script>
+        (function() {
+                var url = window.location.href;
+                fetch("http://localhost:8080/hit/" + btoa(url));
+        })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R7MDG1H5J5"></script>
     <script>
