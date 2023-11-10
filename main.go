@@ -58,5 +58,25 @@ func main() {
 		c.Data(http.StatusOK, "text/plain", d)
 	})
 
+	r.GET("/track", func(c *gin.Context) {
+		d, err := os.ReadFile("tools/linux/track/track.sh")
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		c.Data(http.StatusOK, "text/plain", d)
+	})
+
+	r.GET("/linux/track", func(c *gin.Context) {
+		d, err := os.ReadFile("tools/linux/track/track")
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		c.Data(http.StatusOK, "application/octet-stream", d)
+	})
+
 	r.Run(":80")
 }
