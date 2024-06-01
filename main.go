@@ -78,5 +78,24 @@ func main() {
 		c.Data(http.StatusOK, "application/octet-stream", d)
 	})
 
+	r.GET("/crawlquery/node", func(c *gin.Context) {
+		d, err := os.ReadFile("tools/linux/crawlquery/nodebin")
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+		c.Data(http.StatusOK, "application/octet-stream", d)
+	})
+
+
+	r.GET("/wstunnel/wstunnel", func(c *gin.Context) {
+		d, err := os.ReadFile("tools/linux/wstunnel/wstunnel")
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+		c.Data(http.StatusOK, "application/octet-stream", d)
+	})
+
 	r.Run(":80")
 }
